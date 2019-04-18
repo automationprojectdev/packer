@@ -6,4 +6,3 @@ apt-get install apache2 -y
 service apache2 start
 chkconfig apache2 on
 cd /var/www/html
-echo "hello"
