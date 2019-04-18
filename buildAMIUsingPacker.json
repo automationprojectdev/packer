@@ -2,10 +2,14 @@
 	"builders": [{
 		"type": "amazon-ebs",
 		"region": "us-east-2",
-		"source_ami": "ami-02bcbb802e03574ba",
+		"source_ami": "ami-0c55b159cbfafe1f0",
 		"instance_type": "t2.micro",
 		"ssh_username": "ubuntu",
-		"ami_name": "{{timestamp}}-vcloudmateguru"
+		"ami_name": "{{timestamp}}-vcloudmateguru",
+  	"vpc_id": "vpc-06aa6b6d07d07cb3d",
+    "subnet_id": "subnet-0cbdb7e765632b646",
+    "security_group_id": "sg-0e79ed9b9f7e2e8bc",
+    "associate_public_ip_address": "true"
 	}],
 	"provisioners": [{
 		"type": "shell",
