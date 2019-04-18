@@ -1,15 +1,26 @@
 {
-	"builders": [{
-		"type": "amazon-ebs",
-		"region": "us-east-2",
-		"source_ami": "ami-0c55b159cbfafe1f0",
-		"instance_type": "t2.micro",
-		"ssh_username": "ubuntu",
-		"ami_name": "{{timestamp}}-vcloudmateguru"
-	}],
-	"provisioners": [{
-		"type": "shell",
-		"script": "install.sh"
-	}
-	]
+	  "builders": [
+        {
+
+            "ami_name": "packer-linux-aws-demo-{{timestamp}}",
+            "instance_type": "t2.micro",
+            "region": "us-east-2",
+            "source_ami_filter": {
+              "filters": {
+              "virtualization-type": "hvm",
+              "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+              "root-device-type": "ebs"
+              },
+              "most_recent": true
+            },
+            "ssh_username": "ubuntu",
+            "type": "amazon-ebs"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "example.sh"
+        }
+    ]
 }
