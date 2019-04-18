@@ -6,9 +6,9 @@
 		"instance_type": "t2.micro",
 		"ssh_username": "ubuntu",
 		"ami_name": "{{timestamp}}-vcloudmateguru",
-  	"vpc_id": "vpc-06aa6b6d07d07cb3d",
-    "subnet_id": "subnet-0cbdb7e765632b646",
-    "security_group_id": "sg-0e79ed9b9f7e2e8bc",
+  	"vpc_id": "<vpc-id>",
+    "subnet_id": "<subnet_id>",
+    "security_group_id": "<security-group>",
     "associate_public_ip_address": "true"
 	}],
 	"provisioners": [{
