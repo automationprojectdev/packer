@@ -5,7 +5,7 @@
 		"source_ami": "ami-0c55b159cbfafe1f0",
 		"instance_type": "t2.micro",
 		"ssh_username": "ubuntu",
-		"ami_name": "{{timestamp}}-vcloudmateguru",
+		"ami_name": "{{timestamp}}-vcloudmateguru"
 	}],
 	"provisioners": [{
 		"type": "shell",
