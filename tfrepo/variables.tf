@@ -2,7 +2,7 @@ variable "region" {
   default = "us-east-2"
 }
 
-variable "AmiLinux" {
+/*variable "AmiLinux" {
   type = "map"
 
   default = {
@@ -10,8 +10,7 @@ variable "AmiLinux" {
     us-east-2 = "ami-0cf31d971a3ca20d6" # Ohio
     us-west-2 = "ami-6cd6f714"          # Oregon
   }
-}
-
+}*/
 variable "vpc-fullcidr" {
   default     = "192.168.0.0/16"
   description = "the vpc cdir"
