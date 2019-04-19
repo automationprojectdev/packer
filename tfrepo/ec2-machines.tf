@@ -14,10 +14,10 @@ resource "aws_instance" "ionapp" {
             #!/bin/bash
             sudo su
             cd
-            yum update -y
-            yum install httpd git -y
-            service httpd start
-            chkconfig httpd on
+            apt-get update -y
+            apt-get install apache2 git -y
+            service apache2 start
+            chkconfig apache2 on
             cd /var/www/html
             git clone https://github.com/vCloudmateguru/ion.git
             #echo "Automation for Peole" >> /var/www/html/index.html

@@ -12,15 +12,19 @@ sudo unzip packer_0.8.6_linux_amd64.zip
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 How to Get the AMI-ID from Packer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Bucket Creation
+aws s3api create-bucket --bucket <Name of the bucket> --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1
+
 # run packer (prints to stdout, but stores the output in a variable)
 packer_out=$(packer build buildAMIUsingPacker.json | tee /dev/tty)
 
 # packer prints the id of the generated AMI in its last line
-ami=$(echo "$packer_out" | tail -c 30 | perl -n -e'/: (ami-.+)$/ && print $1')
+ami_id=$(echo "$packer_out" | tail -c 30 | perl -n -e'/: (ami-.+)$/ && print $1')
 
-# create the 'ami.tf' file from the template:
-export AMI_GENERATED_BY_PACKER="$ami" && envsubst < ami.tf.template > ami.tf
+echo 'variable "ami" { default = "'${ami_id}'" }' > amivar_web.tf
+aws s3 cp amivar_web.tf s3://<CreatedBucketName>/amivar_web.tf
 
 cd tfrepo
+aws s3 cp s3://<CreatedBucketName>/amivar_web.tf amivar_web.tf
 terraform init
-terraform apply
+terraform apply -input=false -auto-approve
